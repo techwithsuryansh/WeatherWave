@@ -113,8 +113,5 @@ Distributed under the **MIT License**.
 
 <div align="center">
   <p>Built with ❤️ by <a href="https://github.com/techwithsuryansh">Suryansh</a></p>
-  <p>
-    <a href="https://github.com/techwithsuryansh/WeatherWave/issues">Report a Bug</a> •
-    <a href="https://github.com/techwithsuryansh/WeatherWave/issues">Request a Feature</a>
-  </p>
+  
 </div>
