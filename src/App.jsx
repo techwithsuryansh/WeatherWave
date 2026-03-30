@@ -5,7 +5,7 @@ function App() {
   const [city, setCity] = useState('');
   const [weather, setWeather] = useState(null);
   const [hourly, setHourly] = useState([]);
-  const [daily, setDaily] = useState([]); // Added daily state back
+  const [daily, setDaily] = useState([]); 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -41,10 +41,8 @@ function App() {
 
       setWeather(weatherData);
       
-      // Hourly (Next 8 periods / 24 hours)
       setHourly(forecastData.list.slice(0, 8));
 
-      // Daily (One per day around noon)
       const dailyForecast = forecastData.list.filter(item => item.dt_txt.includes('12:00:00'));
       setDaily(dailyForecast);
 
@@ -93,7 +91,6 @@ function App() {
     return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
   };
 
-  // Generates the points for the real SVG graph
   const generateGraphPath = () => {
     if (!hourly.length) return "";
     const temps = hourly.map(h => Math.round(h.main.temp));
@@ -104,7 +101,6 @@ function App() {
     let path = "";
     temps.forEach((temp, i) => {
       const x = (i / (temps.length - 1)) * 100;
-      // Calculate Y so the graph stays within 20% to 80% height of the container
       const y = 80 - ((temp - minTemp) / range) * 60; 
       if (i === 0) path += `M ${x} ${y}`;
       else path += ` L ${x} ${y}`;
@@ -115,7 +111,7 @@ function App() {
   return (
     <div className="dashboard-wrapper">
       <div className="top-nav">
-        <h1 className="brand-logo">WeatherWave</h1>
+        <h1 className="brand-logo">Weather<span>Wave</span></h1>
         <form onSubmit={handleSearch} className="search-bar">
           <input
             type="text"
@@ -141,96 +137,114 @@ function App() {
       {error && <div className="error-box">{error}</div>}
 
       {weather && !loading && !error && (
-        <div className="bento-grid">
+        <div className="bento-container">
           
-          {/* TOP LEFT: Current Weather */}
-          <div className="bento-card current-card">
-            <div className="current-sky">
-              <div className="sky-header">
-                <h2>{weather.name}</h2>
-                <button onClick={toggleFavorite} className={`fav-star ${favorites.includes(weather.name) ? 'active' : ''}`}>
-                  {favorites.includes(weather.name) ? '★' : '☆'}
-                </button>
-              </div>
-              <div className="sky-body">
-                <h1 className="giant-temp">{Math.round(weather.main.temp)}°</h1>
-                <div className="sky-desc">
-                  <p className="desc-text">{weather.weather[0].description}</p>
-                  <p className="feels-like">Feels like {Math.round(weather.main.feels_like)}°</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="metrics-grid">
-              <div className="metric">
-                <span className="m-label">Wind</span>
-                <span className="m-value">{Math.round(weather.wind.speed)} m/s</span>
-              </div>
-              <div className="metric">
-                <span className="m-label">Humidity</span>
-                <span className="m-value">{weather.main.humidity}%</span>
-              </div>
-              <div className="metric">
-                <span className="m-label">Visibility</span>
-                <span className="m-value">{(weather.visibility / 1000).toFixed(1)} km</span>
-              </div>
-              <div className="metric">
-                <span className="m-label">Pressure</span>
-                <span className="m-value">{weather.main.pressure} hPa</span>
-              </div>
-            </div>
-          </div>
-
-          {/* TOP RIGHT: 24 Hour Timeline with Real Graph */}
-          <div className="bento-card timeline-card">
-            <h3 className="card-title">24-Hour Forecast</h3>
+          {/* ================= LEFT COLUMN ================= */}
+          <div className="left-column">
             
-            {/* REAL SVG GRAPH */}
-            <div className="dynamic-graph-container">
-              <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="real-graph">
-                <path 
-                  d={generateGraphPath()} 
-                  fill="none" 
-                  stroke="#f97316" 
-                  strokeWidth="2" 
-                  strokeLinejoin="round"
-                  vectorEffect="non-scaling-stroke" 
-                />
-              </svg>
+            <div className="bento-card current-card">
+              <div className="current-sky">
+                <div className="sky-header">
+                  <h2>{weather.name}</h2>
+                  <button onClick={toggleFavorite} className={`fav-star ${favorites.includes(weather.name) ? 'active' : ''}`}>
+                    {favorites.includes(weather.name) ? '★' : '☆'}
+                  </button>
+                </div>
+                <div className="sky-body">
+                  <h1 className="giant-temp">{Math.round(weather.main.temp)}°</h1>
+                  <div className="sky-desc">
+                    <p className="desc-text">{weather.weather[0].description}</p>
+                    <p className="feels-like">Feels like {Math.round(weather.main.feels_like)}°</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="metrics-grid">
+                <div className="metric">
+                  <span className="m-label">Wind</span>
+                  <span className="m-value">{Math.round(weather.wind.speed)} m/s</span>
+                </div>
+                <div className="metric">
+                  <span className="m-label">Humidity</span>
+                  <span className="m-value">{weather.main.humidity}%</span>
+                </div>
+                <div className="metric">
+                  <span className="m-label">Visibility</span>
+                  <span className="m-value">{(weather.visibility / 1000).toFixed(1)} km</span>
+                </div>
+                <div className="metric">
+                  <span className="m-label">Pressure</span>
+                  <span className="m-value">{weather.main.pressure} hPa</span>
+                </div>
+              </div>
             </div>
 
-            <div className="timeline-scroll">
-              {hourly.map((hour, idx) => (
-                <div key={idx} className="timeline-item">
-                  <span className="time">{formatTime(hour.dt)}</span>
-                  <img 
-                    src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}.png`} 
-                    alt="icon" 
-                  />
-                  <span className="timeline-temp">{Math.round(hour.main.temp)}°</span>
-                </div>
-              ))}
+            <div className="bento-card daily-card">
+              <h3 className="card-title">5-Day Forecast</h3>
+              <div className="daily-list">
+                {daily.map((day, idx) => (
+                  <div key={idx} className="daily-item">
+                    <span className="daily-date">{formatDate(day.dt)}</span>
+                    <div className="daily-center">
+                      <img 
+                        src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`} 
+                        alt="icon" 
+                      />
+                      <span className="daily-desc">{day.weather[0].description}</span>
+                    </div>
+                    <span className="daily-temp">{Math.round(day.main.temp)}°</span>
+                  </div>
+                ))}
+              </div>
             </div>
+
           </div>
 
-          {/* BOTTOM FULL WIDTH: 5-Day Forecast */}
-          <div className="bento-card daily-card">
-            <h3 className="card-title">5-Day Forecast</h3>
-            <div className="daily-grid">
-              {daily.map((day, idx) => (
-                <div key={idx} className="daily-item">
-                  <span className="daily-date">{formatDate(day.dt)}</span>
-                  <div className="daily-center">
-                    <img 
-                      src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`} 
-                      alt="icon" 
-                    />
-                    <span className="daily-desc">{day.weather[0].description}</span>
+          {/* ================= RIGHT COLUMN ================= */}
+          <div className="right-column">
+            
+            <div className="bento-card forecast-card">
+              <h3 className="card-title">24-Hour Forecast</h3>
+              
+              {/* UPDATED: Unified Scroll Wrapper for true responsiveness */}
+              <div className="forecast-scroll-wrapper">
+                <div className="forecast-inner">
+                  <div className="dynamic-graph-container">
+                    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="real-graph">
+                      <path 
+                        d={generateGraphPath()} 
+                        fill="none" 
+                        stroke="#f97316" 
+                        strokeWidth="2" 
+                        strokeLinejoin="round"
+                        vectorEffect="non-scaling-stroke" 
+                      />
+                    </svg>
                   </div>
-                  <span className="daily-temp">{Math.round(day.main.temp)}°</span>
+                  <div className="timeline-labels">
+                    {hourly.map((hour, idx) => (
+                      <div key={idx} className="timeline-item">
+                        <span className="time">{formatTime(hour.dt)}</span>
+                        <img 
+                          src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}.png`} 
+                          alt="icon" 
+                        />
+                        <span className="timeline-temp">{Math.round(hour.main.temp)}°</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
+
+            <div className="bento-card map-card">
+              <iframe
+                src={`https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=6&overlay=wind&product=ecmwf&level=surface&lat=${weather.coord.lat}&lon=${weather.coord.lon}&detailLat=${weather.coord.lat}&detailLon=${weather.coord.lon}&marker=true`}
+                frameBorder="0"
+                title="Live Weather Map"
+              ></iframe>
+            </div>
+
           </div>
 
         </div>
@@ -239,4 +253,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 

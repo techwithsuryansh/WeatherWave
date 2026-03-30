@@ -1,342 +1,443 @@
-/* Global Reset */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
-  background: url('https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=2065&auto=format&fit=crop') center/cover no-repeat fixed;
-  color: #333;
-  min-height: 100vh;
+  font-family: "Poppins", "Inter", system-ui, sans-serif;
+  background-color: #0b1220;
+  background-image:
+    radial-gradient(circle at top left, #1c2a4a 0%, transparent 60%),
+    radial-gradient(circle at bottom right, #1a1f3b 0%, transparent 60%);
+  color: #e6ecff;
 }
 
+/* ===== Layout ===== */
 .dashboard-wrapper {
-  max-width: 1000px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px 14px 40px 14px;
 }
 
-/* Top Navigation */
 .top-nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
   flex-wrap: wrap;
-  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
 }
 
 .brand-logo {
-  color: #fff;
   font-weight: 800;
-  font-size: 28px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  font-size: 26px;
+  letter-spacing: 0.4px;
+  color: #ffffff;
 }
 
+.brand-logo span {
+  color: #ff8a34;
+}
+
+/* ===== Search ===== */
 .search-bar {
+  flex: 1;
   display: flex;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border-radius: 30px;
-  padding: 5px 5px 5px 20px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  align-items: center;
+  min-width: 220px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 6px 6px 6px 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
 .search-bar input {
   flex: 1;
   border: none;
-  background: transparent;
+  background-color: transparent;
   outline: none;
-  font-size: 16px;
-  color: #333;
+  color: #dbe7ff;
+  font-size: 14px;
 }
 
 .search-bar button {
-  background: #f97316;
+  width: 36px;
+  height: 36px;
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  background-color: #ff8a34;
   color: #fff;
   cursor: pointer;
-  transition: transform 0.2s;
+  box-shadow: 0 4px 14px rgba(255, 138, 52, 0.5);
 }
 
-.search-bar button:hover {
-  transform: scale(1.05);
-}
-
-/* Favorites */
+/* ===== Favorites ===== */
 .favorites-container {
   display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
   flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 16px;
 }
 
 .fav-badge {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255,255,255,0.8);
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   font-weight: 600;
-  color: #333;
-  transition: all 0.2s;
+  color: #cfe1ff;
 }
 
-.fav-badge:hover {
-  background: rgba(255, 255, 255, 0.9);
-}
-
-/* BENTO GRID LAYOUT */
-.bento-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 20px;
-  animation: fadeIn 0.5s ease;
+/* ===== Cards ===== */
+.bento-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .bento-card {
-  background: rgba(245, 245, 245, 0.85);
-  backdrop-filter: blur(25px);
-  border-radius: 24px;
-  padding: 24px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: #121b2f;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
 }
 
-/* Left Card: Current Weather */
+/* ===== Current Weather ===== */
 .current-card {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
+  padding: 14px;
 }
 
 .current-sky {
-  background: linear-gradient(to bottom, #8ba8c9, #a3b8cc);
+  background-image: linear-gradient(135deg, #4169e1, #20325b);
   border-radius: 16px;
-  padding: 24px;
-  color: white;
-  margin-bottom: 10px;
+  padding: 20px;
+  color: #ffffff;
+  margin-bottom: 14px;
+  box-shadow: inset 0 0 30px rgba(255,255,255,0.08);
 }
 
 .sky-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
 }
 
 .sky-header h2 {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .fav-star {
   background: none;
   border: none;
-  font-size: 24px;
-  color: rgba(255,255,255,0.5);
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
 }
 
 .fav-star.active {
-  color: #f97316;
+  color: #ff8a34;
 }
 
 .sky-body {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  gap: 12px;
 }
 
 .giant-temp {
-  font-size: 72px;
-  font-weight: 700;
+  font-size: clamp(44px, 8vw, 64px);
+  font-weight: 800;
   line-height: 1;
 }
 
-.sky-desc {
-  text-align: right;
-}
-
 .desc-text {
-  font-weight: 700;
-  font-size: 18px;
+  font-size: 13px;
+  font-weight: 600;
   text-transform: capitalize;
+  color: #d7e4ff;
 }
 
 .feels-like {
-  font-size: 14px;
-  opacity: 0.9;
+  font-size: 12px;
+  opacity: 0.8;
 }
 
-/* Bottom Half Metrics Grid */
+/* ===== Metrics ===== */
 .metrics-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  padding: 10px;
 }
 
 .metric {
-  background: rgba(255, 255, 255, 0.5);
-  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  padding: 12px;
+  text-align: left;
 }
 
 .m-label {
-  font-size: 12px;
-  color: #666;
-  margin-bottom: 6px;
+  font-size: 10px;
+  color: #9fb2d9;
+  font-weight: 700;
   text-transform: uppercase;
-  font-weight: 600;
 }
 
 .m-value {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
-  color: #222;
+  color: #ffffff;
 }
 
-/* Right Card: Forecast */
-.timeline-card {
-  display: flex;
-  flex-direction: column;
-}
-
+/* ===== 5-Day Forecast ===== */
 .card-title {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
-  margin-bottom: 20px;
-  color: #222;
+  margin-bottom: 12px;
+  color: #cfe1ff;
 }
 
-/* Real Dynamic SVG Graph */
-.dynamic-graph-container {
-  height: 80px;
-  margin-bottom: 20px;
-  width: 100%;
-  border-bottom: 2px dashed rgba(249, 115, 22, 0.2);
-  padding: 0 15px; /* Aligns line to the center of the elements below */
-}
-
-.real-graph {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.timeline-scroll {
-  display: flex;
-  justify-content: space-between;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  gap: 15px;
-}
-
-.timeline-item {
+.daily-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-width: 60px;
-}
-
-.time {
-  font-size: 13px;
-  font-weight: 600;
-  color: #555;
-}
-
-.timeline-temp {
-  font-size: 18px;
-  font-weight: 700;
-  color: #222;
-}
-
-/* NEW: Daily Forecast Card */
-.daily-card {
-  grid-column: 1 / -1; /* Spans full width of the bottom */
-}
-
-.daily-grid {
-  display: grid;
-  gap: 12px;
 }
 
 .daily-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: rgba(255, 255, 255, 0.5);
-  padding: 12px 24px;
-  border-radius: 12px;
+  gap: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.daily-item:last-child {
+  border-bottom: none;
 }
 
 .daily-date {
-  font-weight: 600;
-  width: 100px;
-  color: #444;
+  width: 80px;
+  font-size: 12px;
+  color: #9fb2d9;
+  flex-shrink: 0;
 }
 
 .daily-center {
   display: flex;
   align-items: center;
-  gap: 15px;
-  flex: 1;
+  gap: 6px;
+  min-width: 0;
 }
 
 .daily-center img {
-  width: 40px;
-  height: 40px;
+  width: 22px;
+  height: 22px;
 }
 
 .daily-desc {
-  text-transform: capitalize;
-  font-weight: 500;
-  color: #555;
+  font-size: 12px;
+  color: #b9c7e6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .daily-temp {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 700;
-  color: #222;
+  color: #ffffff;
+  flex-shrink: 0;
 }
 
-/* Status Messages */
+/* ===== 24-Hour Forecast ===== */
+.forecast-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.forecast-inner {
+  min-width: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dynamic-graph-container {
+  height: 80px;
+  border-bottom: 1px dashed rgba(255, 138, 52, 0.3);
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-bottom: 10px;
+}
+
+.real-graph {
+  width: 100%;
+  height: 100%;
+}
+
+.timeline-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.timeline-item {
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.time {
+  font-size: 11px;
+  color: #9fb2d9;
+}
+
+.timeline-temp {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* ===== Map ===== */
+.map-card {
+  padding: 0;
+  overflow: hidden;
+  min-height: 240px;
+}
+
+.map-card iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: none;
+}
+
+/* ===== Loader & Error ===== */
 .loader, .error-box {
-  background: rgba(255,255,255,0.9);
-  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px;
   border-radius: 12px;
   text-align: center;
   font-weight: 600;
-  margin-top: 40px;
 }
+
 .error-box {
-  color: #dc2626;
+  color: #ff6b6b;
 }
 
-/* Responsive Design */
-@media (max-width: 800px) {
-  .bento-grid {
-    grid-template-columns: 1fr;
+/* ===== Responsive ===== */
+@media (min-width: 720px) {
+  .bento-container {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 18px;
   }
-  .daily-card {
-    grid-column: 1;
+
+  .left-column {
+    width: 360px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .map-card {
+    min-height: 320px;
   }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@media (min-width: 1024px) {
+  .brand-logo {
+    font-size: 28px;
+  }
+
+  .bento-card {
+    padding: 18px;
+  }
+
+  .dynamic-graph-container {
+    height: 90px;
+  }
+
+
+
+}
+/* ===== Soft Hover Effects ===== */
+.bento-card:hover {
+  transform: translateY(-3px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+}
+
+.fav-badge:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.search-bar button:hover {
+  transform: scale(1.05);
+}
+
+/* ===== Micro Animations (Cards Fade In) ===== */
+.bento-card {
+  animation: cardFadeIn 0.4s ease;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+/* ===== Animated Graph Glow ===== */
+.real-graph path {
+  filter: drop-shadow(0 0 6px rgba(255, 138, 52, 0.7));
+  animation: glowPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0% {
+    filter: drop-shadow(0 0 4px rgba(255, 138, 52, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(255, 138, 52, 0.9));
+  }
+  100% {
+    filter: drop-shadow(0 0 4px rgba(255, 138, 52, 0.5));
+  }
+
+
+
 }
