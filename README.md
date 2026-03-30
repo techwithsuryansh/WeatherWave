@@ -1,47 +1,116 @@
-# WeatherWave 🌊
+<div align="center">
 
-A beautiful, responsive weather dashboard built with React and Vite. It features a premium "Bento Box" glassmorphism UI, real-time weather data, and dynamic SVG forecasting graphs.
+<h1>WeatherWave</h1>
 
-![WeatherWave Preview](https://via.placeholder.com/800x400.png?text=WeatherWave+Dashboard)
+<p>A playful, modern weather dashboard built with React & Vite.<br/>Get live weather, hourly forecasts, and radar map — instantly.</p>
 
-## ✨ Features
-* **Real-time Weather:** Accurate current conditions, wind, humidity, and pressure.
-* **Dynamic Graphs:** Custom SVG graph displaying the 24-hour temperature trend.
-* **5-Day Forecast:** Daily overviews at a glance.
-* **Favorites System:** Save your most visited cities (persists via Local Storage).
-* **Premium UI:** Frosted glass cards over a stunning atmospheric background.
+<p>
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
+  <img src="https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite&logoColor=white"/>
+  <img src="https://img.shields.io/badge/OpenWeather-API-FF8A34?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge"/>
+</p>
 
-## 🛠️ Tech Stack
-* **Frontend:** React 18, Vite
-* **Styling:** Custom Vanilla CSS (Flexbox/CSS Grid)
-* **API:** OpenWeatherMap
+<p>
+  <a href="https://weatherwave-live.vercel.app">
+    <img src="https://img.shields.io/badge/Live_Demo-weatherwave--live.vercel.app-orange?style=for-the-badge"/>
+  </a>
+</p>
 
-## 🚀 Quick Start
+<p>
+  <a href="#-features">Features</a> •
+  <a href="#-project-structure">Structure</a> •
+  <a href="#-roadmap">Roadmap</a > •
+   <a href="#-contributing">Contributing</a> 
+</p>
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/techwithsuryansh/WeatherWave.git
-   cd WeatherWave
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables:**
-   Create a `.env` file in the root directory and add your OpenWeatherMap API key:
-   ```env
-   VITE_WEATHER_API_KEY=your_api_key_here
-   ```
-
-4. **Run the app:**
-   ```bash
-   npm run dev
-   ```
-
-
-
+</div>
 
 ---
-*Built by [techwithsuryansh](https://github.com/techwithsuryansh)*
+
+##  Overview
+
+**WeatherWave** is a sleek, responsive weather application designed with a playful, modern dark UI.  
+It gives you real-time weather, 24‑hour trends, a 5‑day forecast, and a live radar map.
+
+---
+
+##  Features
+
+| Feature | Description |
+|---|---|
+|  City Search | Search any city in the world |
+|  Favorites | Save and quickly access favorite cities |
+|  24‑Hour Graph | Animated temperature trend line |
+|  5‑Day Forecast | Clean list view of the next 5 days |
+|  Live Radar Map | Windy radar map embed |
+|  Responsive | Looks clean on phone, tablet, and desktop |
+
+---
+
+##  Project Structure
+
+```
+/
+├── src/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── main.jsx
+│   └── index.css
+│
+├── public/
+│   └── favicon.svg
+│
+├── .env.example
+├── package.json
+├── vite.config.js
+└── README.md
+```
+
+---
+##  Roadmap
+
+- [x] Live weather search
+- [x] Favorites system
+- [x] 24‑hour forecast chart
+- [x] 5‑day forecast list
+- [x] Windy radar map
+- [ ] Sunrise / Sunset card
+- [ ] Air quality badge
+- [ ] Theme switcher
+- [ ] Multi‑language support
+
+---
+
+##  Contributing
+
+Contributions are welcome:
+
+```bash
+# Fork the repo
+# Create a branch
+git checkout -b feature/new-feature
+
+# Commit changes
+git add .
+git commit -m "feat: add new feature"
+
+# Push and open PR
+git push origin feature/new-feature
+```
+
+---
+
+##  License
+
+Distributed under the **MIT License**.
+
+---
+
+<div align="center">
+  <p>Built with ❤️ by <a href="https://github.com/techwithsuryansh">Suryansh</a></p>
+  <p>
+    <a href="https://github.com/techwithsuryansh/WeatherWave/issues">Report a Bug</a> •
+    <a href="https://github.com/techwithsuryansh/WeatherWave/issues">Request a Feature</a>
+  </p>
+</div>
