@@ -52,19 +52,23 @@ It gives you real-time weather, 24‑hour trends, a 5‑day forecast, and a live
 
 ```
 /
-├── src/
-│   ├── App.jsx
-│   ├── App.css
-│   ├── main.jsx
-│   └── index.css
-│
-├── public/
-│   └── favicon.svg
-│
-├── .env.example
+├── .gitignore
+├── LICENSE
+├── README.md
+├── eslint.config.js
+├── index.html
+├── package-lock.json
 ├── package.json
 ├── vite.config.js
-└── README.md
+│
+├── public/
+│
+└── src/
+    ├── App.css
+    ├── App.jsx
+    ├── index.css
+    ├── main.jsx
+    └── assets/
 ```
 
 ---
